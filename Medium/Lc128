@@ -1,0 +1,28 @@
+import java.util.*;
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if (nums.length == 0) return 0;
+
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        int max=1;
+      for(int n:set){
+       // The !set.contains(n - 1) condition is written so that the sequence counting doesn’t start from the middle  
+       //    (like from 4); it ensures the counting begins only from the start of a sequence (like from 1).
+        if(!set.contains(n-1)){
+            int current=n;
+            int maxSeq=1;
+
+            while(set.contains(current+1)){
+                current++;
+                maxSeq++;
+            }
+            max=Math.max(max,maxSeq);
+        }
+      }
+  return max;
+    }
+}
