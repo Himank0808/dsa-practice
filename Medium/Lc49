@@ -4,14 +4,14 @@ class Solution {
         Map<String,List<String>> mp= new HashMap<>();
 
         for(String word:strs){
-            char[] ch= word.toCharArray();
-            Arrays.sort(ch);
-            String temp= new String(ch);
+            char[] ch= word.toCharArray();     // eat become [e,a,t]
+            Arrays.sort(ch);                   // a,e,t hua
+            String temp= new String(ch);        // temp=aet
 
             if(!mp.containsKey(temp)){
-                mp.put(temp,new ArrayList<>());
+                mp.put(temp,new ArrayList<>());   // if aet is not present create a new entry
             }
-            mp.get(temp).add(word);
+            mp.get(temp).add(word);                //  mp me add aet,eat
         }
         return new ArrayList<>(mp.values());
     }
