@@ -1,0 +1,33 @@
+class Solution {
+    static int countNoOfSplits(int[] nums,int max){
+        long sum=0;int splits=1;
+        for(int i=0;i<nums.length;i++){
+            if(sum+nums[i]>max){
+                splits++;
+                sum = nums[i];
+            }
+            else{
+                sum+=nums[i];
+            }
+        }
+        return splits;
+    }
+    public int splitArray(int[] nums, int k) {
+        int low  = nums[0],high=0,ans;
+        for(int i=0;i<nums.length;i++){
+            low = Math.max(low,nums[i]);
+            high+=nums[i];
+        }
+        ans = high;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(countNoOfSplits(nums,mid)<=k){
+                ans = mid;
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
+}
